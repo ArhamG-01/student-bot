@@ -7,7 +7,8 @@ load_dotenv()
 class StudentBot:
     def __init__(self):
         from openai import OpenAI
-        self.client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+        api_key = st.secrets["OPENAI_API_KEY"]
+        self.client = OpenAI(api_key=api_key)
 
         self.conversation = [
             {
@@ -131,3 +132,4 @@ for speaker, msg in st.session_state.chat_history:
         st.markdown(f"**You:** {msg}")
     else:
         st.markdown(f"**Bot:** {msg}")
+
